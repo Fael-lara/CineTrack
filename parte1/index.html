@@ -1,32 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <meta charset="UTF-8"
+        <meta charset="UTF-8">
         <title>CineTrack</title>
     </head>
 <body>
-    <h1>CineTrack</h1>
-    <p><strong>CineTrack</strong> é seu gerenciador pessoal de filmes:
-    registre o que já viu, o que está vendo e o que quer ver.</p>
-    <h2>Status possíveis</h2>
-    <ul id="listas-status">
-        <li calss="item-status">Assistido</li>
-        <li calss="item-status">Assistindo</li>
-        <li calss="item-status">Quero Assistir</li>
-    </ul>
-    <h2>Mesus filmes favoritos</h2>
-    <ol>
-        <li>A origem</li>
-        <li>Iterestelar</li>
-        <li>Parasita</li>
-    </ol>
-    <h2>Sobre A Origem</h2>
-    <dl>
-        <dt>Diretor</dt> <dd>Christopher Nolan</dd>
-        <dt>Ano</dt> <dd>2010</dd>
-        <dt>Gênero</dt> <dd>Ficção cientifica</dd>
-    </dl>
-    <a href="adicionar.html">+ Adicionar filme</a>   
-    <p>&copy; 2025 CineTrack</p>
+    <header>
+        <h1>CineTrack</h1>
+        <input type="search" aria-label="Buscar filme">
+        <button>+ Adicionar</button>  
+    </header>
+    <nav aria-label="Filtros de status">
+        <button class="ativo" type="button">Todos</button>
+        <button class="ativo" type="button">Assistido</button>
+        <button class="ativo" type="button">Assistindo</button>
+        <button class="ativo" type="button">Quero Assistir</button>
+    </nav>
+    <main>
+        <section id="lista" aria-live="polite">
+            <article class="card">
+                <img alt="Banner A Origem" src="https://www.themoviedb.org/t/p/w600_and_h900_face/9e3Dz7aCANy5aRUQF745IlNloJ1.jpg" width="100">
+                <h2>A Origem</h2>
+                <p>2010 - Ficção científica</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
+                <span class="badge">Assistido</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+            <article class="card">
+                <img alt="Banner Parasita" src="https://www.themoviedb.org/t/p/w600_and_h900_face/igw938inb6Fy0YVcwIyxQ7Lu5FO.jpg" width="100">
+                <h2>Parasita</h2>
+                <p>2019 - Suspense</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
+                <span class="badge">Assistido</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+            <article class="card">
+                <img alt="Banner O Auto da Compacidade" src="https://www.themoviedb.org/t/p/w600_and_h900_face/imcOp1kJsCsAFCoOtY5OnPrFbAf.jpg" width="100">
+                <h2>O Auto da Compacidade</h2>
+                <p>2000 - Comédia</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
+                <span class="badge">Assistido</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+            <article class="card">
+                <img alt="Banner Duna: Parte Dois" src="https://www.themoviedb.org/t/p/w600_and_h900_face/8LJJjLjAzAwXS40S5mx79PJ2jSs.jpg" width="100">
+                <h2>Duna: Parte Dois</h2>
+                <p>2024 - Ficção científica</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
+                <span class="badge">Assistindo</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+            <article class="card">
+                <img alt="Banner Interestelar" src="https://www.themoviedb.org/t/p/w600_and_h900_face/6ricSDD83BClJsFdGB6x7cM0MFQ.jpg" width="100">
+                <h2>Interestelar</h2>
+                <p>2014 - Ficção científica</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
+                <span class="badge">Quero Assistir</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+            <article class="card">
+                <img alt="Banner Cidade de Deus" src="https://www.themoviedb.org/t/p/w600_and_h900_face/gfnXixcGC060QcG6JPxN6AMdVsq.jpg" width="100">
+                <h2>Cidade de Deus</h2>
+                <p>2002 - Drama</p>
+                <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
+                <span class="badge">Quero Assistir</span>
+                <button class="button">Editar</button>
+                <button class="button">Remover</button>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <small>CineTrack - UEM</small> <br>
+        <a href="adicionar.html">Adicionar Filme</a>
+    </footer>
 </body>
 </html>
