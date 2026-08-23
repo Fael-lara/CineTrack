@@ -9,30 +9,30 @@
     <h1>Adicionar filme</h1>
     <form id="form-filme">
         <label for="titulo">Titulo</label> <br>
-        <input id="titulo" type="text" required> <br>
+        <input id="titulo" type="text" name="titulo" required> <br>
         
         <label for="ano">Ano</label> <br>
         <input id="ano" type="number"
-        min="1888" max="2030" required> <br>
+        min="1888" max="2030" name="ano" required> <br>
 
         <label for="genero">Gênero</label> <br>
-        <input id="genero" type="text" required> <br>
+        <input id="genero" type="text" name="genero" required> <br>
 
         <label for="url">Url do pôster</label> <br>
-        <input id="url" type="url"> <br>
+        <input id="url" type="url" name="url"> <br>
 
         <label for="status">Status</label> <br>
-        <select id="status" required>
+        <select id="status" required name="status">
                 <option value="QueroAssistir">Quero Assistir</option>
                 <option value="Assistido">Assistido</option>
                 <option value="Assistindo">Assistindo</option>
         </select> <br>
 
         <label for="nota">Nota (1 a 5)</label> <br>
-        <input id="nota" type="number" min="1" max="5"> <br>
+        <input id="nota" type="number" min="1" max="5" name="nota"> <br>
 
         <label for="comentario">Comentário</label> <br>
-        <textarea id="comentario"></textarea> <br>
+        <textarea id="comentario" name="comentario"></textarea> <br>
 
         <button type="button">Cancelar</button>
         <button type="submit">Adicionar</button>
