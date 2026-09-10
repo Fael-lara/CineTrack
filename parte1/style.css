@@ -1,7 +1,7 @@
 /* 
  #1A3A5C
  #FFFFFF
- #1A3A5C
+ #C0392B
 */
 
 * { box-sizing: border-box;
@@ -16,20 +16,56 @@ body { font-family:  system-ui, sans-serif;
 }
 
 header { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
     background-color: #1A3A5C;
     color: #FFFFFF;
     padding: 12px;
 }
-nav { padding: 20px; }
+
+header h1 { 
+    flex: 0 0 auto; 
+    padding: 7px;
+}
+
+header input { 
+    padding: 7px;
+    border-radius: 7px;
+    flex: 1 1 240px;
+}
+
+header button {
+    padding: 5px 14px;
+    border-radius: 7px;
+    color: white;
+    background: #C0392B;
+}
+
+nav { 
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 12px 24px;
+}
+
+nav button {
+    padding: 6px 14px;
+    border: 1px solid #1A3A5C;
+    background: white;
+    border-radius: 999px;
+}
+
+nav button.ativo {
+    background: #1A3A5C;
+    color: white;
+}
 
 img { max-width: 100%; display: block; }
 
 button { font: inherit; cursor: pointer }
-
-#adicionar { 
-    background-color: #b30505;
-    color: #FFFFFF;
-}
 
 .card {
     padding: 14px;
@@ -37,4 +73,42 @@ button { font: inherit; cursor: pointer }
     border-radius: 8px;
     box-shadow: 0 1px 4px #0002;
     background-color: #FFFFFF;
+}
+
+#lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 24px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 200px;
+    align-items: flex-start;
+    font-size: 15px;
+}
+
+.card .acoes {
+    margin-top: auto;
+    display: flex; 
+    gap: 8px;
+    width: 100%;
+}
+
+.card .badge {
+    background-color: #EEEEEE;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.card button {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid #1A3A5C;
+    background: white;
+    border-radius: 2px;
 }
