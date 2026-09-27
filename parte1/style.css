@@ -29,6 +29,7 @@ header {
 header h1 { 
     flex: 0 0 auto; 
     padding: 7px;
+    font-size: clamp(1.2rem, 1rem + 2.5vw, 2.5rem);
 }
 
 header input { 
@@ -76,9 +77,10 @@ button { font: inherit; cursor: pointer }
 }
 
 #lista {
-    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: grid;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
     padding: 16px 24px;
 }
 
@@ -86,7 +88,6 @@ button { font: inherit; cursor: pointer }
     display: flex;
     flex-direction: column;
     gap: 6px;
-    width: 200px;
     align-items: flex-start;
     font-size: 15px;
 }
@@ -111,4 +112,38 @@ button { font: inherit; cursor: pointer }
     border: 1px solid #1A3A5C;
     background: white;
     border-radius: 2px;
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.texto-desktop {
+    display: none;
+}
+
+.texto-mobile {
+    display: inline;
+}
+
+@media (min-width: 1024px) {
+    #lista {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        display: grid;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 16px 24px;
+    }
+    
+    .texto-mobile {
+        display: none;
+    }
+
+    .texto-desktop {
+        display: inline;
+    }
+    
 }

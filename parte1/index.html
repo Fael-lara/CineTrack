@@ -2,6 +2,7 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CineTrack</title>
         <link rel="stylesheet" href="style.css">
     </head>
@@ -9,13 +10,16 @@
     <header>
         <h1>CineTrack</h1>
         <input type="search" aria-label="Buscar filme" placeholder="Buscar filme...">
-        <button id="adicionar">+ Adicionar</button>  
+        <button class="adicionar">
+            <span class="texto-mobile">+</span>
+            <span class="texto-desktop">+ Adicionar</span>
+        </button>
     </header>
     <nav aria-label="Filtros de status">
         <button class="ativo" type="button">Todos</button>
-        <button class="ativo" type="button">Assistido</button>
-        <button class="ativo" type="button">Assistindo</button>
-        <button class="ativo" type="button">Quero Assistir</button>
+        <button type="button">Assistido</button>
+        <button type="button">Assistindo</button>
+        <button type="button">Quero Assistir</button>
     </nav>
     <main>
         <section id="lista" aria-live="polite">
