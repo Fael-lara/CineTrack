@@ -28,7 +28,7 @@
                 <h2>A Origem</h2>
                 <p>2010 - Ficção científica</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
-                <span class="badge">Assistido</span> <br>
+                <span class="badge assistido">Assistido</span> <br>
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -39,7 +39,7 @@
                 <h2>Parasita</h2>
                 <p>2019 - Suspense</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
-                <span class="badge">Assistido</span> 
+                <span class="badge assistido">Assistido</span> 
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -50,7 +50,7 @@
                 <h2>O Auto da Compacidade</h2>
                 <p>2000 - Comédia</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
-                <span class="badge">Assistido</span>
+                <span class="badge assistido">Assistido</span>
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -61,7 +61,7 @@
                 <h2>Duna: Parte Dois</h2>
                 <p>2024 - Ficção científica</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
-                <span class="badge">Assistindo</span>
+                <span class="badge assistindo">Assistindo</span>
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -72,7 +72,7 @@
                 <h2>Interestelar</h2>
                 <p>2014 - Ficção científica</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&starf;</p>
-                <span class="badge">Quero Assistir</span>
+                <span class="badge quero">Quero Assistir</span>
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -83,7 +83,7 @@
                 <h2>Cidade de Deus</h2>
                 <p>2002 - Drama</p>
                 <p>Nota: &starf;&starf;&starf;&starf;&star;</p>
-                <span class="badge">Quero Assistir</span>
+                <span class="badge quero">Quero Assistir</span>
                 <div class="acoes">
                 <button class="button">Editar</button>
                 <button class="button">Remover</button>
@@ -95,5 +95,40 @@
         <small>CineTrack - UEM</small> <br>
         <a href="adicionar.html">Adicionar Filme</a>
     </footer>
+    <div id="modal" hidden>
+        <div class="modal-conteudo">
+            <h2>Adicionar filme</h2>
+            <form id="form-filme">
+                <label for="titulo">Titulo</label> <br>
+                <input id="titulo" type="text" name="titulo" required> <br>
+                
+                <label for="ano">Ano</label> <br>
+                <input id="ano" type="number"
+                min="1888" max="2030" name="ano" required> <br>
+
+                <label for="genero">Gênero</label> <br>
+                <input id="genero" type="text" name="genero" required> <br>
+
+                <label for="url">Url do pôster</label> <br>
+                <input id="url" type="url" name="url"> <br>
+
+                <label for="status">Status</label> <br>
+                <select id="status" name="status" required>
+                        <option value="QueroAssistir">Quero Assistir</option>
+                        <option value="Assistido">Assistido</option>
+                        <option value="Assistindo">Assistindo</option>
+                </select> <br>
+
+                <label for="nota">Nota (1 a 5)</label> <br>
+                <input id="nota" type="number" min="1" max="5" name="nota"> <br>
+
+                <label for="comentario">Comentário</label> <br>
+                <textarea id="comentario" name="comentario"></textarea> <br>
+
+                <button type="button" class="btn-cancelar">Cancelar</button>
+                <button type="submit" class="btn-salvar">salvar</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
