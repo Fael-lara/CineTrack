@@ -1,38 +1,76 @@
-/* 
- #1A3A5C
- #FFFFFF
- #C0392B
-*/
-
 :root {
-    --cor-primaria: #1A3A5C;
+    /* Cores principais */
+    --cor-primaria: #101828;
     --cor-branca: #FFFFFF;
-    --cor-destaque: #C0392B;
-    --cor-texto: #000000;
-    --cor-fundo: #F5F5F5;
-    --cor-borda: #DDDDDD;
-    --cor-badge-assistido: #C8F0C8;
-    --cor-badge-assistindo: #FFEAAA;
-    --cor-badge-quero: #CFE2FF;
-    --cor-filtro-hover: #DCE8F2;
-    --cor-acao-hover: #E8EEF4;
+    --cor-destaque: #EF3038;
+    --cor-texto: #172033;
     --cor-texto-contraste: #FFFFFF;
+    --cor-fundo: #EEF1F5;
+    --cor-borda: #D9E0E8;
+
+    /* Input */
+    --cor-input: #1B2A3D;
+    --cor-input-borda: #334B67;
+    --cor-placeholder: #C3CDD8;
+
+    /* Badges */
+    --cor-badge-assistido: #CBEFD9;
+    --cor-badge-assistindo: #CFE2FF;
+    --cor-badge-quero: #FFE8B8;
+
+    /* Interações */
+    --cor-filtro-hover: #E7EDF4;
+    --cor-acao-hover: #E9EEF5;
+
+    /* Botões dos cards */
+    --cor-botao-card: #EAEDF2;
+
+    --cor-editar: #EAEDF2;
+    --cor-editar-hover: #DDE2E8;
+
+    --cor-remover: #F9E9EA;
+    --cor-remover-hover: #F5DADB;
+    --cor-remover-texto: #EF3038;
+
+    /* Dimensões */
+    --altura-header-item: 52px;
 }
+
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --cor-primaria: #264F73;
-        --cor-branca: #1C232B;
-        --cor-destaque: #D35449;
-        --cor-texto: #E9EEF3;
-        --cor-fundo: #101419;
-        --cor-borda: #39434D;
-        --cor-badge-assistido: #234C35;
-        --cor-badge-assistindo: #594A1D;
-        --cor-badge-quero: #244462;
-        --cor-filtro-hover: #243A4D;
-        --cor-acao-hover: #29343E;
+        /* Cores principais */
+        --cor-primaria: #0B1422;
+        --cor-branca: #182230;
+        --cor-destaque: #F23B43;
+        --cor-texto: #EEF3F8;
         --cor-texto-contraste: #FFFFFF;
+        --cor-fundo: #0E1621;
+        --cor-borda: #2D3A4A;
+
+        /* Input */
+        --cor-input: #162337;
+        --cor-input-borda: #3B506A;
+        --cor-placeholder: #B8C4D3;
+
+        /* Badges */
+        --cor-badge-assistido: #183D2A;
+        --cor-badge-assistindo: #18365A;
+        --cor-badge-quero: #4B3914;
+
+        /* Interações */
+        --cor-filtro-hover: #223044;
+        --cor-acao-hover: #263446;
+
+        /* Botões dos cards */
+        --cor-botao-card: #253140;
+
+        --cor-editar: #253140;
+        --cor-editar-hover: #303E4F;
+
+        --cor-remover: #44262B;
+        --cor-remover-hover: #563037;
+        --cor-remover-texto: #FF6970;
     }
 }
 
@@ -63,31 +101,72 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 20px;
     flex-wrap: wrap;
     background-color: var(--cor-primaria);
     color: var(--cor-texto-contraste);
-    padding: 12px;
+    padding: 16px 20px;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: var(--altura-header-item);
+}
+
+.logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.marca-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header h1 { 
-    flex: 0 0 auto; 
-    padding: 7px;
-    font-size: clamp(1.2rem, 1rem + 2.5vw, 2.5rem);
+    margin: 0;
+    padding: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+    line-height: 1;
+}
+
+.cine {
+    color: var(--cor-texto-contraste);
+}
+
+.track {
+    color: var(--cor-destaque);
+}
+
+header .subtitulo {
+    margin-top: 6px;
+    font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.95rem);
+    color: #AAB4C3;
 }
 
 header input { 
-    padding: 7px;
+    height: var(--altura-header-item);
+    padding: 0 18px;
+    border-radius: 12px;
     border-radius: 7px;
     flex: 1 1 240px;
-    background-color: var(--cor-branca);
-    color: var(--cor-texto);
-    border: 1px solid var(--cor-borda);
+    background-color: var(--cor-input);
+    border: 1px solid var(--cor-input-borda);
+    color: var(--cor-texto-contraste);
+}
+
+header input::placeholder {
+    color: var(--cor-placeholder);
 }
 
 header button {
-    padding: 5px 14px;
-    border-radius: 7px;
+    height: var(--altura-header-item);
+    padding: 0 24px;
+    border-radius: 12px;
     color: var(--cor-texto-contraste);
     background: var(--cor-destaque);
 }
@@ -107,17 +186,21 @@ nav button {
     color: var(--cor-texto);
 }
 
-nav button:hover {
-    background-color: var(--cor-filtro-hover);
+nav button {
+    background-color: var(--cor-branca);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
 }
 
+nav button:hover,
 nav button:focus-visible {
     background-color: var(--cor-filtro-hover);
 }
 
 nav button.ativo {
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-destaque);
     color: var(--cor-texto-contraste);
+    border-color: var(--cor-destaque);
 }
 
 img { max-width: 100%; display: block; }
@@ -143,6 +226,11 @@ button:focus-visible {
     border-radius: 8px;
     box-shadow: 0 1px 4px #0002;
     background-color: var(--cor-branca);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    font-size: 15px;
 }
 
 #lista {
@@ -151,14 +239,6 @@ button:focus-visible {
     flex-wrap: wrap;
     gap: 12px;
     padding: 16px 24px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
-    font-size: 15px;
 }
 
 .card .acoes {
@@ -181,18 +261,29 @@ button:focus-visible {
 .card button {
     flex: 1;
     padding: 7px 10px;
-    border: 1px solid var(--cor-primaria);
-    background: var(--cor-branca);
     border-radius: 2px;
+}
+
+.card .btn-editar {
+    background-color: var(--cor-editar);
     color: var(--cor-texto);
+    border: none;
 }
 
-.card button:hover {
-    background-color: var(--cor-acao-hover);
+.card .btn-remover {
+    background-color: var(--cor-remover);
+    color: var(--cor-remover-texto);
+    border: none;
 }
 
-.card button:focus-visible {
-    background-color: var(--cor-acao-hover);
+.card .btn-editar:hover,
+.card .btn-editar:focus-visible {
+    background-color: var(--cor-editar-hover);
+}
+
+.card .btn-remover:hover,
+.card .btn-remover:focus-visible {
+    background-color: var(--cor-remover-hover);
 }
 
 .card img {
