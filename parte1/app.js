@@ -61,6 +61,10 @@ const filmesIniciais = [
     }
 ];
 
+let filmes = [...filmesIniciais];
+const nav = document.querySelector("nav")
+const lista = document.querySelector("#lista");
+
 function renderizarCards(filmes) {
     const cards = filmes.map((f) => `
         <article class="card" data-id="${f.id}">
@@ -71,14 +75,33 @@ function renderizarCards(filmes) {
             <span class="badge ${f.status}">${rotuloStatus(f.status)}</span>
             
             <div class="acoes">
-                <button class="button">Editar</button>
-                <button class="button">Remover</button>
+                <button class="button btn-editar">Editar</button>
+                <button class="button btn-remover">Remover</button>
             </div>
         </article>
     `).join("");
-    const lista = document.querySelector("#lista");
     lista.innerHTML = cards;
 }
+
+lista.addEventListener("click", (e) => {
+    const botao = e.target.closest(".btn-remover");
+    if (!botao) return;
+    if (!confirm("Remover este filme?")) return;
+    const card = botao.closest(".card");
+    const id = Number(card.dataset.id);
+    filmes = filmes.filter((f) => f.id !== id);
+    const status = nav.querySelector(".ativo").dataset.status;
+    renderizarCards(filmes.filter((f) => status === "todos" || f.status === status));
+});
+
+nav.addEventListener("click", (e) => {
+    const botao = e.target.closest("button");
+    if (!botao) return;
+    nav.querySelector(".ativo").classList.remove("ativo");
+    botao.classList.add("ativo");
+    const status = botao.dataset.status;
+    renderizarCards(filmes.filter((f) => status === "todos" || f.status === status));
+});
 
 function rotuloStatus(status) {
     if (status === "assistido") return "Assistido";
@@ -97,7 +120,7 @@ const estrelas = (nota) => {
     return resp;
 };
 
-renderizarCards(filmesIniciais);
+renderizarCards(filmes);
 
 const primeiroCard = document.querySelector(".card");
 const badge = primeiroCard.querySelector(".badge");
