@@ -61,7 +61,8 @@ const filmesIniciais = [
     }
 ];
 
-let filmes = [...filmesIniciais];
+const CHAVE = "cinetrack:filmes";
+let filmes = carregar();
 const nav = document.querySelector("nav")
 const lista = document.querySelector("#lista");
 
@@ -113,8 +114,8 @@ lista.addEventListener("click", (e) => {
     const card = botao.closest(".card");
     const id = Number(card.dataset.id);
     filmes = filmes.filter((f) => f.id !== id);
-    const status = nav.querySelector(".ativo").dataset.status;
-    renderizarCards(filmes.filter((f) => status === "todos" || f.status === status));
+    salvar();
+    atualizar();
 });
 
 nav.addEventListener("click", (e) => {
@@ -122,8 +123,8 @@ nav.addEventListener("click", (e) => {
     if (!botao) return;
     nav.querySelector(".ativo").classList.remove("ativo");
     botao.classList.add("ativo");
-    const status = botao.dataset.status;
-    renderizarCards(filmes.filter((f) => status === "todos" || f.status === status));
+    statusAtual = botao.dataset.status;
+    atualizar();
 });
 
 function rotuloStatus(status) {
@@ -176,7 +177,7 @@ lista.addEventListener("click", (e) => {
     form.elements.titulo.value = f.titulo;
     form.elements.ano.value = f.ano;
     form.elements.genero.value = f.genero;
-    form.elements.url.value = f.poster;
+    form.elements.poster.value = f.poster;
     form.elements.status.value = f.status;
     form.elements.nota.value = f.nota;
     form.elements.comentario.value = f.comentario; 
@@ -197,8 +198,8 @@ form.addEventListener("submit", (e) => {
     } else {
         filmes =  [...filmes, { id: gerarId(filmes), ...dados }];
     }
-    const status = nav.querySelector(".ativo").dataset.status;
-    renderizarCards(filmes.filter((f) => status === "todos" || f.status === status));
+    salvar();
+    atualizar();
     fechar();
 });
 
@@ -216,21 +217,55 @@ function validarFilme(filme) {
         erros.push("Gênero obrigatório");
     if (!filme.status)
         erros.push("Status obrigatório");
-    if (filme.nota < 0 || filme > 5)
+    if (filme.nota < 0 || filme.nota > 5)
         erros.push("Nota inválida");
     return { valido: erros.length === 0, erros};
 }
 
+let termoAtual = "";
+let statusAtual = "todos";
+
+function aplicarFiltros(lista, opcoes) {
+    const termo = opcoes.termo.toLowerCase();
+    return lista
+    .filter((f) => f.titulo.toLowerCase().includes(termo))
+    .filter((f) => opcoes.status === "todos" || f.status === opcoes.status);
+}
+
+function atualizar() {
+    const visiveis = aplicarFiltros(filmes, { termo: termoAtual, status: statusAtual });
+    renderizarCards(visiveis)
+}
+
+function debounce(fn, ms = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args),ms);
+    };
+}
+
+const busca = document.querySelector("header input");
+
+const aoDigitar = (e) => {
+    termoAtual = e.target.value;
+    atualizar();
+};
+
+busca.addEventListener("input", debounce(aoDigitar, 300));
+
+const salvar = () => localStorage.setItem(CHAVE, JSON.stringify(filmes));
+
+function carregar() {
+    const txt = localStorage.getItem(CHAVE);
+    return txt
+        ? JSON.parse(txt)
+        : [...filmesIniciais];
+}
+
 renderizarCards(filmes);
 
-const primeiroCard = document.querySelector(".card");
-const badge = primeiroCard.querySelector(".badge");
-const paragrafos = primeiroCard.querySelectorAll("p");
-const nota = paragrafos[1];
-badge.textContent = rotuloStatus("assistido");
-nota.textContent = "Nota: " + estrelas(2);
 
-
-const TOTAL = 6;
+const TOTAL = filmes.length;
 const rodape = document.querySelector("footer small");
 rodape.textContent = `CineTrack © 2026 · ${TOTAL} filmes cadastrados`;

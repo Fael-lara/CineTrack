@@ -41,10 +41,22 @@
 
 html { font-size: 16px; }
 
-body { font-family:  system-ui, sans-serif;
+body { 
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    font-family:  system-ui, sans-serif;
     line-height: 1.5;
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    padding: 12px 24px;
 }
 
 header { 
