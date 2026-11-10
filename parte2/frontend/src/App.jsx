@@ -1,12 +1,17 @@
-import Titulo from './componentes/Titulo'
 
+import { filmesIniciais } from "./data/filmes.js"
+import Header from "./components/Header.jsx"
+import Filtros from "./components/Filtros.jsx"
+import ListaFilmes from "./components/ListaFilmes.jsx"
 
-
-export default function App() {
+function App() {
   return (
   <>
-  <Titulo />
-  <p>{new Date().getFullYear()}</p>
+  <Header/>
+  <Filtros/>
+  <ListaFilmes filmes={filmesIniciais}/>
   </>
   );
 }
+
+export default App;
