@@ -1,4 +1,4 @@
-function Header() {
+function Header({ busca, aoBuscar }) {
     return (
     <header>
         <div class="marca">
@@ -10,7 +10,7 @@ function Header() {
             <p class="subtitulo">Sua lista pessoal de filmes</p>
         </div>
     </div>
-        <input type="search" aria-label="Buscar filme" placeholder="Buscar filme..."/>
+        <input type="search" aria-label="Buscar filme" placeholder="Buscar filme..." value={busca} onChange={(e) => aoBuscar(e.target.value)}/>
         <button class="adicionar">
             <span class="texto-mobile">+</span>
             <span class="texto-desktop">+ Adicionar</span>

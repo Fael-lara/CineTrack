@@ -1,10 +1,28 @@
-function Filtros() {
+const STATUS = [
+    { valor: "todos",
+      rotulo: "Todos"
+    },
+    { valor: "assistido",
+      rotulo: "Assistindo"
+    },
+    { valor: "assistindo",
+      rotulo: "Assistindo"
+    },
+    { valor: "quero",
+      rotulo: "Quero Assistir"
+    }
+]
+
+function Filtros({ ativo, aoMudar}) {
     return (
         <nav aria-label="Filtros de status">
-        <button type="button" class="ativo" data-status="todos">Todos</button>
-        <button type="button" data-status="assistido">Assistido</button>
-        <button type="button" data-status="assistindo">Assistindo</button>
-        <button type="button" data-status="quero">Quero assistir</button>
+        {STATUS.map((s) => (
+            <button key={s.valor}
+            className={ ativo === s.valor ? "ativo": ""}
+            onClick={() => aoMudar(s.valor)}>
+                {s.rotulo}
+            </button>
+        ))}
         </nav>
     );
 }
