@@ -1,4 +1,4 @@
-function Header({ busca, aoBuscar }) {
+function Header({ busca, aoBuscar, aoAdicionar }) {
     return (
     <header>
         <div class="marca">
@@ -11,7 +11,7 @@ function Header({ busca, aoBuscar }) {
         </div>
     </div>
         <input type="search" aria-label="Buscar filme" placeholder="Buscar filme..." value={busca} onChange={(e) => aoBuscar(e.target.value)}/>
-        <button class="adicionar">
+        <button class="adicionar" onClick={aoAdicionar}>
             <span class="texto-mobile">+</span>
             <span class="texto-desktop">+ Adicionar</span>
         </button>

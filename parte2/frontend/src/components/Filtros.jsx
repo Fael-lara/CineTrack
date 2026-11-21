@@ -3,7 +3,7 @@ const STATUS = [
       rotulo: "Todos"
     },
     { valor: "assistido",
-      rotulo: "Assistindo"
+      rotulo: "Assistido"
     },
     { valor: "assistindo",
       rotulo: "Assistindo"
