@@ -1,19 +1,19 @@
 function Header({ busca, aoBuscar, aoAdicionar }) {
     return (
     <header>
-        <div class="marca">
-        <img src="img/logo-cinetrack.png" alt="Logo CineTrack" class="logo"/>
-        <div class="marca-texto">
+        <div className="marca">
+        <img src="img/logo-cinetrack.png" alt="Logo CineTrack" className="logo"/>
+        <div className="marca-texto">
             <h1>
-                <span class="cine">Cine</span><span class="track">Track</span>
+                <span className="cine">Cine</span><span className="track">Track</span>
             </h1>
-            <p class="subtitulo">Sua lista pessoal de filmes</p>
+            <p className="subtitulo">Sua lista pessoal de filmes</p>
         </div>
     </div>
         <input type="search" aria-label="Buscar filme" placeholder="Buscar filme..." value={busca} onChange={(e) => aoBuscar(e.target.value)}/>
-        <button class="adicionar" onClick={aoAdicionar}>
-            <span class="texto-mobile">+</span>
-            <span class="texto-desktop">+ Adicionar</span>
+        <button className="adicionar" onClick={aoAdicionar}>
+            <span className="texto-mobile">+</span>
+            <span className="texto-desktop">+ Adicionar</span>
         </button>
     </header>
     );
