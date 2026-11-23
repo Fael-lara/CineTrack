@@ -2,19 +2,30 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 
 const ARQUIVO = path.join(__dirname, "data", "filmes.json");
 
+const porta = process.env.PORT;
+
 function lerFilmes() {
     return JSON.parse(fs.readFileSync(ARQUIVO, "utf8"));
 }
 
+function salvarFilmes(lista) {
+    fs.writeFileSync(ARQUIVO, JSON.stringify(lista, null, 2));
+}
+
+function gerarId(lista) {
+    const ids = lista.map((filme) => filme.id);
+    return Math.max(0, ...ids) + 1
+}
+
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-
-app.listen(3000, () => console.log("API na porta 3000"));
 
 app.get("/filmes/:id", (req, res) => {
     const id = Number(req.params.id);
@@ -32,3 +43,35 @@ app.get("/filmes", (req, res) => {
     res.json(lista);
 });
 
+app.post("/filmes", (req, res) => {
+    const dados = req.body;
+    if (!dados.titulo || !dados.ano)
+        return res.status(400).json({ erro: "Dados obrigatórios" });
+    const lista = lerFilmes();
+    const novo = { id: gerarId(lista), ...dados };
+    lista.push(novo);
+    salvarFilmes(lista);
+    res.status(201).json(novo);
+});
+
+app.put("/filmes/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const lista = lerFilmes();
+    const i = lista.findIndex(f => f.id === id);
+    if (i === -1) 
+        return res.status(404).json({ erro: "Filme não encontrado" });
+    lista[i] =  { ...lista[i], ...req.body, id };
+    salvarFilmes(lista);
+    res.json(lista[i]);
+});
+
+app.delete("/filmes/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const lista = lerFilmes();
+    if (!lista.some(f => f.id ===id))
+        return res.status(404).json({ erro: "Filme não encontrado" });
+    salvarFilmes(lista.filter(f => f.id !== id));
+    res.sendStatus(204);
+});
+
+app.listen(porta, () => console.log(`API na porta ${porta}`));

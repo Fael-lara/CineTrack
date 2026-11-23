@@ -70,6 +70,6 @@ const filmes = [
     }
 ];
 fs.mkdirSync(path.dirname(ARQUIVO), { recursive: true });
-fs.writeFileSync("data/filmes.json", JSON.stringify(filmes, null, 2));
+fs.writeFileSync(ARQUIVO, JSON.stringify(filmes, null, 2));
 
 console.log(`${filmes.length} filmes gravados`);
