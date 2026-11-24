@@ -1,10 +1,9 @@
-import { gerarId } from "./data/filmes.js"
 import Header from "./components/Header.jsx"
 import Filtros from "./components/Filtros.jsx"
 import ListaFilmes from "./components/ListaFilmes.jsx"
 import { useEffect, useState } from "react";
 import ModalFilme from "./components/ModalFilme.jsx";
-import { listar } from "./api.js";
+import { atualizar, criar, listar, remover } from "./api.js";
 
 
 function App() {
@@ -26,39 +25,25 @@ function App() {
       .includes(busca.toLocaleLowerCase())
   );
 
-  function adicionar(novoFilme) {
-    setFilmes((anteriores) => [
-      ...anteriores, {...novoFilme, id: gerarId(anteriores)}
-    ]);
+async function salvar(filme) {
+  if (filme.id) {
+    const at = await atualizar(filme.id, filme);
+    setFilmes(fs => fs.map(f => f.id === at.id ? at : f));
+  } else {
+    const novo = await criar(filme);
+    setFilmes(fs => [...fs, novo]);
   }
+  setEditando(null);
+}
 
-  function remover(id) {
-    setFilmes((anteriores) =>
-      anteriores.filter((filme) => filme.id !== id)
-    );
-  }
-
-  function editar(id, alteracoes) {
-    setFilmes((anteriores) =>
-      anteriores.map((filme) =>
-        filme.id === id ? { ...filme, ...alteracoes } : filme
-      )
-    );
-  }
-
-  function salvar(dados) {
-    if (editando.id) {
-      editar(editando.id, dados);
-    } else {
-      adicionar(dados)
-    }
-    setEditando(null);
-  }
-
+async function removerFilme(id) {
+  await remover(id);
+  setFilmes(fs => fs.filter(f => f.id !== id));
+}
 
   useEffect(() => {
     listar()
-    .then((dados) => setFilmes(dados))
+    .then(setFilmes)
     .catch((erro) => setErro(erro.message))
     .finally(() => setCarregando(false));
   }, []);
@@ -77,7 +62,7 @@ function App() {
   } else {
     conteudo = <ListaFilmes filmes={visiveis}
         aoEditar={setEditando}
-        aoRemover={remover}/>;
+        aoRemover={removerFilme}/>;
   }
   return (
     <>

@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 const VAZIO = {
-    titulo: "",
-    ano: "",
-    genero: "",
-    status: "quero",
-    nota: 3,
+  titulo: "",
+  ano: "",
+  genero: "",
+  poster: "",
+  status: "quero",
+  nota: 3,
+  comentario: "",
 };
 
 
@@ -24,7 +26,7 @@ function ModalFilme({ filme, aoSalvar, aoFechar }) {
     return (
         <div id="modal">
             <div className="modal-conteudo">
-                <h2>Adicionar filme</h2>
+                <h2>{filme.id ? "Editar filme" : "Adicionar filme"}</h2>
                 <form id="form-filme" onSubmit={submeter}>
                     <label htmlFor="titulo">Titulo</label> <br/>
                     <input id="titulo" type="text" name="titulo" required 

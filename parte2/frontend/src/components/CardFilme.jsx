@@ -16,7 +16,7 @@ function CardFilme({ filme, aoEditar, aoRemover}) {
             <p>{filme.ano} - {filme.genero}</p>
             <p>{estrelas(filme.nota)}</p>
             <span className={`badge ${filme.status}`}>
-            <p>{ROTULOS[filme.status]}</p>
+            {ROTULOS[filme.status]}
             </span>
             <div className="acoes">
                 <button className="button btn-editar" onClick={() => aoEditar(filme)}>Editar</button>
